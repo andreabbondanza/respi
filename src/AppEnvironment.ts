@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { IApiController } from "./common/IApiController";
-import { envConfig } from "./models/EnvConfig";
+import { envConfig } from "./EnvConfig";
 
 
 
