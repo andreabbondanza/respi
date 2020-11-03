@@ -1,0 +1,29 @@
+{
+  "name": "respi",
+  "version": "0.1.0",
+  "description": "A web framework for Node.js",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreabbondanza/respi.git"
+  },
+  "keywords": [
+    "web",
+    "api",
+    "framework",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Andrea Vincenzo Abbondanza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreabbondanza/respi/issues"
+  },
+  "homepage": "https://github.com/andreabbondanza/respi#readme",
+  "dependencies": {
+    "typedoc": "^0.19.2"
+  }
+}
