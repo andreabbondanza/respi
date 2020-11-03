@@ -3,5 +3,8 @@ export const envConfig: IEnvConfig = {
 }
 
 export interface IEnvConfig{
+    /**
+     * Controllers path from dist
+     */
     controllers: string;
 }

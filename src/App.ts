@@ -28,6 +28,7 @@ export class App implements IApiApp
     }
     /**
      * Perform middleware settings
+     * @param middlewares: the middlewares
      */
     public uses(...middlewares: RequestHandler[])
     {
@@ -44,7 +45,7 @@ export class App implements IApiApp
      * Set the api from the controller
      * @param controllers the IApiController controllers
      */
-    public setupApi(...controllers: IApiController[])
+    public setupControllers(...controllers: IApiController[])
     {
         if (this._api)
         {
@@ -70,5 +71,5 @@ const controllers = AppEnvironment.loadControllers();
 
 app.configure()
 .uses(...middlewares)
-.setupApi(...controllers).start();
+.setupControllers(...controllers).start();
 
