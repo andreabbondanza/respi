@@ -5,7 +5,7 @@ import { IApiController } from "./common/IApiController";
 import { middlewares } from "./middlewares/Middlewares";
 import dewlinq from 'dewlinq';
 import dewstrings from 'dewstrings';
-import { AppConfig } from "./App.config";
+import { AppEnvironment } from "./AppEnvironment";
 dewlinq();
 dewstrings();
 
@@ -66,7 +66,9 @@ export class App implements IApiApp
 
 const app = new App();
 
-const controllers = AppConfig.loadControllers();
+const controllers = AppEnvironment.loadControllers();
 
-app.configure().uses(...middlewares).setupApi(...controllers).start();
+app.configure()
+.uses(...middlewares)
+.setupApi(...controllers).start();
 
