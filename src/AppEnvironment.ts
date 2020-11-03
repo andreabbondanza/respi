@@ -1,10 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { IApiController } from "./common/IApiController";
-import { envConfig } from "./EnvConfig";
-
-
-
+import { envConfig } from "./IEnvConfig";
 
 export class AppEnvironment
 {
