@@ -2,5 +2,14 @@
     "server": {
         "port": 8080,
         "host": "localhost"
+    },
+    "fileSystem":{
+        "controllers":"./controllers",
+        "root":"..",
+        "localizationConfig":"..",
+        "localizationFiles":"./localization"
+    },
+    "localization":{
+        "lang":"it"
     }
 }
