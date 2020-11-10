@@ -1,11 +1,14 @@
 import { RequestHandler } from "express";
 import { Api } from "./common/Api";
-import { IApiApp } from "./common/IApiApp";
-import { IApiController } from "./common/IApiController";
+import { Request, Response } from "express";
+import { IApiApp } from "./common/interfaces/IApiApp";
+import { IApiControllerTuple } from "./common/interfaces/IApiController";
 import { middlewares } from "./middlewares/Middlewares";
 import dewlinq from 'dewlinq';
 import dewstrings from 'dewstrings';
 import { AppEnvironment } from "./AppEnvironment";
+import "reflect-metadata";
+
 dewlinq();
 dewstrings();
 
@@ -47,15 +50,19 @@ export class App implements IApiApp
      * Set the api from the controller
      * @param controllers the IApiController controllers
      */
-    public setupControllers(...controllers: IApiController[])
+    public setupControllers(...controllers: IApiControllerTuple[])
     {
         if (this._api)
         {
-            for (const apiClass of controllers)
+            for (const controller of controllers)
             {
-                apiClass.init(this._api).configure();
+                controller.instance.init(this._api).enableRouting(controller.controllerClass);
             }
         }
+        this._api?.api.get("*", (req: Request, res: Response) =>
+        {
+            res.status(404).send("Can't find resource!");
+        });
         return this;
     }
     /**
@@ -72,6 +79,7 @@ const app = new App();
 const controllers = AppEnvironment.loadControllers();
 
 app.configure()
-.uses(...middlewares)
-.setupControllers(...controllers).start();
+    .uses(...middlewares)
+    .setupControllers(...controllers)
+    .start();
 
