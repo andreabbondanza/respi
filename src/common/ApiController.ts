@@ -1,13 +1,17 @@
+import { LanguageManager } from "language-manager-ts";
 import { HomeController } from "../controllers/Home.controller";
 import { IApi } from "./interfaces/IApi";
 import { IApiController } from "./interfaces/IApiController";
 import { IRouteDefinition } from "./interfaces/IRouterDefinition";
+import { PoolData } from "./PoolData";
 
 export class ApiController implements IApiController
 {
+    protected _lang: LanguageManager | undefined = undefined;
     private _api: IApi | undefined = undefined;
-    public init(api: IApi): IApiController
+    public init(api: IApi, poolData: PoolData = new PoolData()): IApiController
     {
+        this._lang = poolData.get("lang");
         this._api = api;
         return this;
     }

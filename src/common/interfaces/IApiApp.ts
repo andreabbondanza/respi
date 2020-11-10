@@ -16,7 +16,7 @@ export interface IApiApp
      * Setup the controllers
      * @param controllers the list of controllers with routes to use
      */
-    setupControllers(...controllers: IApiControllerTuple[]): IApiApp;
+    setupControllers(): IApiApp;
     /**
      * Start the app
      */

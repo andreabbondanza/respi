@@ -9,6 +9,10 @@ import dewstrings from 'dewstrings';
 import { AppEnvironment } from "./AppEnvironment";
 import "reflect-metadata";
 import { StandardResponse } from "standard-response";
+import { Language, LanguageManager, StorageServer } from "language-manager-ts";
+import { Italian } from "./localization/Italian.local";
+import { PoolData } from "./common/PoolData";
+import { IConfig } from "./common/interfaces/IConfig";
 
 dewlinq();
 dewstrings();
@@ -16,7 +20,8 @@ dewstrings();
 export class App implements IApiApp
 {
     private _api: Api | undefined = undefined;
-    private _config: any = {};
+    private _config: IConfig | undefined = undefined;
+    private _poolData: PoolData = new PoolData();
 
     public constructor()
     {
@@ -27,8 +32,11 @@ export class App implements IApiApp
      */
     public configure()
     {
-        const config = AppEnvironment.loadConfig();
-        this._config.port = config.server.port;
+        this._config = AppEnvironment.loadConfig();
+        this._config.server.port = this._config.server.port;
+        this._poolData.push("lang", new LanguageManager(new StorageServer(".."))
+            .addLanguages(...AppEnvironment.loadLocals(this._config))
+            .setCurrentLanguage(this._config.localization.lang));
         return this;
     }
     /**
@@ -50,20 +58,27 @@ export class App implements IApiApp
      * Set the api from the controller
      * @param controllers the IApiController controllers
      */
-    public setupControllers(...controllers: IApiControllerTuple[])
+    public setupControllers()
     {
-        if (this._api)
+        if (this._config)
         {
-            for (const controller of controllers)
+            const controllers = AppEnvironment.loadControllers(this._config);
+            if (this._api)
             {
-                controller.instance.init(this._api).enableRouting(controller.controllerClass);
+                for (const controller of controllers)
+                {
+                    controller.instance
+                        .init(this._api, this._poolData)
+                        .enableRouting(controller.controllerClass);
+                }
             }
-        }
+        } 1
+        // 404, every not found falls here
         this._api?.api.get("*", (req: Request, res: Response) =>
         {
             const response = new StandardResponse();
             response.errorMessage = "Resource not found";
-            res.setHeader("Content-Type","application/json");          
+            res.setHeader("Content-Type", "application/json");
             res.status(404).send(response.toJson());
         });
         return this;
@@ -73,16 +88,15 @@ export class App implements IApiApp
      */
     public start()
     {
-        this._api?.listen(this._config.port);
+        if (this._config)
+            this._api?.listen(this._config.server.port);
     }
 }
 
 const app = new App();
 
-const controllers = AppEnvironment.loadControllers();
-
 app.configure()
     .uses(...middlewares)
-    .setupControllers(...controllers)
+    .setupControllers()
     .start();
 

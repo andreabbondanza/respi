@@ -1,3 +1,5 @@
+import { LanguageManager } from "language-manager-ts";
+import { PoolData } from "../PoolData";
 import { IApi } from "./IApi";
 
 export interface IApiControllerTuple
@@ -16,7 +18,7 @@ export interface IApiController
      * Init a controller 
      * @param api the api object for the controller
      */
-    init(api: IApi): IApiController;
+    init(api: IApi, pool: PoolData): IApiController;
     /**
      * Return current controller api object
      */
