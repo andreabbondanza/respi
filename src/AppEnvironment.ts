@@ -1,9 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { IApi } from "./common/interfaces/IApi";
 import { IApiController } from "./common/interfaces/IApiController";
 import { IConfig } from "./common/interfaces/IConfig";
-import { IRouteDefinition } from "./common/interfaces/IRouterDefinition";
 import { envConfig } from "./IEnvConfig";
 
 export class AppEnvironment
