@@ -23,7 +23,9 @@ export class App implements IApiApp
      */
     public configure()
     {
-        this._config.port = 8080;
+        const config = AppEnvironment.loadConfig();
+        console.log(config);
+        this._config.port = config.server.port;
         return this;
     }
     /**

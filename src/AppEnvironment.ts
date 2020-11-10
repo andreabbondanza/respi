@@ -1,10 +1,16 @@
 import fs from "fs";
 import path from "path";
 import { IApiController } from "./common/IApiController";
+import { IConfig } from "./common/IConfig";
 import { envConfig } from "./IEnvConfig";
 
 export class AppEnvironment
 {
+    public static loadConfig(): IConfig{
+        const file = fs.readFileSync(path.join(envConfig.root,"config.app.json"), {encoding: "utf8"});
+        let config: IConfig = JSON.parse(file);
+        return config;
+    }
     /**
      * Load all controllers from controllers folder
      */

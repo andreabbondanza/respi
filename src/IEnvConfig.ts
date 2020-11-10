@@ -1,5 +1,6 @@
 export const envConfig: IEnvConfig = {
-    controllers: "./controllers"
+    controllers: "./controllers",
+    root: ".."
 }
 
 export interface IEnvConfig{
@@ -7,4 +8,8 @@ export interface IEnvConfig{
      * Controllers path from dist
      */
     controllers: string;
+    /**
+     * Root path for the app
+     */
+    root: string;
 }
