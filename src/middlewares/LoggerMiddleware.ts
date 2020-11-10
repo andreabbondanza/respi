@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { IApiMiddleware } from "../common/IApiMiddleware";
+import { IApiMiddleware } from "../common/interfaces/IApiMiddleware";
 
 
 export class LoggerMiddleware implements IApiMiddleware

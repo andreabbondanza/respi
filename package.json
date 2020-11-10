@@ -35,6 +35,7 @@
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "reflect-metadata": "^0.1.13",
+    "standard-response": "^1.0.6",
     "typedoc": "^0.19.2"
   }
 }

@@ -1,29 +1,15 @@
-import { RequestHandler } from "express";
-import { IApi } from "../common/IApi";
-import { IApiController } from "../common/IApiController";
+import { Resolver } from "dns";
+import { Request, Response } from "express";
+import { ApiController } from "../common/ApiController";
+import { controller, get } from "../common/Decorators";
 
-export class HomeController implements IApiController{
-    private _api: IApi | undefined = undefined; 
-    public init(api: IApi): IApiController
+@controller("/first")
+export class HomeController extends ApiController
+{
+    @get("/second/:number")
+    public home(req: Request, res: Response): void
     {
-        this._api = api;
-        return this;
-    }
-    public configure(): IApiController
-    {
-         this._api?.api.get("/",this.home());
-         return this;  
-    }
-    
-    public home(): RequestHandler {
-        return (req: any,res: any) => {
-
-            res.send(
-            {
-                hello: "ciao",
-                math: Math.random()*100
-            });
-        }
+        res.send("OK! " + req.params.number)
     }
 
 }

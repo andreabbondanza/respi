@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { IApiController } from "./IApiController";
+import { IApiController, IApiControllerTuple } from "./IApiController";
 
 export interface IApiApp
 {
@@ -16,7 +16,7 @@ export interface IApiApp
      * Setup the controllers
      * @param controllers the list of controllers with routes to use
      */
-    setupControllers(...controllers: IApiController[]): IApiApp;
+    setupControllers(...controllers: IApiControllerTuple[]): IApiApp;
     /**
      * Start the app
      */

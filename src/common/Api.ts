@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import { Server } from 'http';
 import { ApiError } from '../errors/ApiError';
-import { IApi } from './IApi';
+import { IApi } from './interfaces/IApi';
 
 export class Api implements IApi
 {
