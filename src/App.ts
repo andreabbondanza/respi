@@ -3,11 +3,12 @@ import { Api } from "./common/Api";
 import { Request, Response } from "express";
 import { IApiApp } from "./common/interfaces/IApiApp";
 import { IApiControllerTuple } from "./common/interfaces/IApiController";
-import { middlewares } from "./middlewares/Middlewares";
+import { middlewares } from "./middlewares/AppMiddlewares";
 import dewlinq from 'dewlinq';
 import dewstrings from 'dewstrings';
 import { AppEnvironment } from "./AppEnvironment";
 import "reflect-metadata";
+import { StandardResponse } from "standard-response";
 
 dewlinq();
 dewstrings();
@@ -60,7 +61,10 @@ export class App implements IApiApp
         }
         this._api?.api.get("*", (req: Request, res: Response) =>
         {
-            res.status(404).send("Can't find resource!");
+            const response = new StandardResponse();
+            response.errorMessage = "Resource not found";
+            res.setHeader("Content-Type","application/json");          
+            res.status(404).send(response.toJson());
         });
         return this;
     }

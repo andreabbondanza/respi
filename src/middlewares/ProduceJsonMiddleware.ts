@@ -2,16 +2,15 @@ import { RequestHandler } from "express";
 import { IAppMiddleware } from "../common/interfaces/IAppMiddleware";
 
 
-export class LoggerMiddleware implements IAppMiddleware
+export class ProduceJsonMiddleware implements IAppMiddleware
 {
     public get<T>(...val: T[]): RequestHandler
     {
         return (req, res, next) =>
         {
-            console.log("Log from interface");
-
+            res.setHeader("Content-Type","application/json");
             next();
-            console.log("ciao");
+            
         }
     }
 

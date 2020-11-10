@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 
-export interface IApiMiddleware
+export interface IAppMiddleware
 {
     /**
      * Return the callback for the middleware
