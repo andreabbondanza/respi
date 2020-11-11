@@ -1,7 +1,10 @@
 export class Logger
 {
     private _env: string = "development";
-    public get showLog()
+    /**
+     * Indicate if show log
+     */
+    public get showLog(): boolean
     {
         return this._env === "development";
     }
