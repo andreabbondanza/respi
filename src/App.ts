@@ -103,7 +103,7 @@ export class App implements IApiApp
 const app = new App();
 
 app.configure()
-    .uses(...middlewares)
+    .uses(...middlewares())
     .setupControllers()
     .start();
 
