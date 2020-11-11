@@ -1,5 +1,5 @@
+import { NextFunction } from "express";
 import { LanguageManager } from "language-manager-ts";
-import { HomeController } from "../controllers/Home.controller";
 import { IApi } from "./interfaces/IApi";
 import { IApiController } from "./interfaces/IApiController";
 import { IRouteDefinition } from "./interfaces/IRouterDefinition";
@@ -29,10 +29,17 @@ export class ApiController implements IApiController
         for (const route of routes)
         {
             const methodName = route.methodName.toString();
-            const request = (req: Express.Request, res: Express.Response) =>
-            {
-                self[methodName](req, res)
-            }
+            let request: any = undefined;
+            if (route.type === "api")
+                request = (req: Express.Request, res: Express.Response) =>
+                {
+                    self[methodName](req, res)
+                }
+            if(route.type === "middleware")
+            request = (req: Express.Request, res: Express.Response, next: NextFunction) =>
+                {
+                    self[methodName](req, res, next)
+                }
             this.getApi()?.api[route.requestMethod](prefix + route.path, request)
         }
     }

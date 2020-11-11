@@ -5,4 +5,6 @@ export interface IRouteDefinition {
     requestMethod: 'get' | 'post' | 'delete' | 'options' | 'put' | 'patch';
     // Method name within our class responsible for this route
     methodName: string | Symbol;
+    // Callback type
+    type: 'middleware' | 'api';
   }

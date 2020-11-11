@@ -1,14 +1,19 @@
-import { Resolver } from "dns";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { StandardResponse } from "standard-response";
 import { ApiController } from "../common/ApiController";
-import { controller, get } from "../common/Decorators";
+import { controller, get, getMiddleware } from "../common/Decorators";
 
 
-@controller("/first")
+@controller("")
 export class HomeController extends ApiController
 {
-    @get("/second")
+    @getMiddleware("")
+    public homeMiddleware(req: Request, res: Response, next: NextFunction){
+        console.log("Logging from home middleware! :)");
+        next();
+    }
+
+    @get("")
     public home2(req: Request, res: Response): void
     {
         const response = new StandardResponse();
@@ -17,7 +22,7 @@ export class HomeController extends ApiController
         res.send(response.toJson());
     }
 
-    @get("/second/:number")
+    @get("/:number")
     public home(req: Request, res: Response): void
     {
         const response = new StandardResponse();
