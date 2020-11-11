@@ -11,7 +11,7 @@ export class Logger
             this._env = env;
     }
 
-    private getTrace()
+    private getTrace(): string | undefined
     {
         let stack: any = null;
         try
