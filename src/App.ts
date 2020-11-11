@@ -1,21 +1,22 @@
-import { RequestHandler } from "express";
-import { Api } from "./common/Api";
-import { Request, Response } from "express";
-import { IApiApp } from "./common/interfaces/IApiApp";
-import { IApiControllerTuple } from "./common/interfaces/IApiController";
-import { middlewares } from "./middlewares/AppMiddlewares";
 import dewlinq from 'dewlinq';
 import dewstrings from 'dewstrings';
-import { AppEnvironment } from "./AppEnvironment";
+import { Request, RequestHandler, Response } from "express";
+import { LanguageManager, StorageServer } from "language-manager-ts";
 import "reflect-metadata";
 import { StandardResponse } from "standard-response";
-import { Language, LanguageManager, StorageServer } from "language-manager-ts";
-import { Italian } from "./localization/Italian.local";
-import { PoolData } from "./common/PoolData";
+import { AppEnvironment } from "./AppEnvironment";
+import { Api } from "./common/Api";
+import { IApiApp } from "./common/interfaces/IApiApp";
 import { IConfig } from "./common/interfaces/IConfig";
+import { Logger } from './common/Logger';
+import { PoolData } from "./common/PoolData";
+import { middlewares } from "./middlewares/AppMiddlewares";
+import process from "process";
 
 dewlinq();
 dewstrings();
+
+export const logger = new Logger(process.env.NODE_ENV);
 
 export class App implements IApiApp
 {
@@ -89,7 +90,13 @@ export class App implements IApiApp
     public start()
     {
         if (this._config)
+        {
             this._api?.listen(this._config.server.port);
+            logger.log("Server is listening on " 
+                        + this._config.server.host 
+                        + ":" 
+                        + this._config.server.port);
+        }
     }
 }
 
