@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "run": "tsc && node ./dist/App.js"
+    "run": "tsc && cd ./dist && NODE_ENV=development node ./App.js",
+    "run-prod": "tsc && cd ./dist && NODE_ENV=production node ./App.js"
   },
   "repository": {
     "type": "git",
