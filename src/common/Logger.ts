@@ -46,7 +46,6 @@ export class Logger
             console.log("------------------");
             console.log(this.getTrace());
             console.log(val);
-            console.log("------------------");
         }
     }
 }
