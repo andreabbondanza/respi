@@ -4,7 +4,7 @@ import { IRouteDefinition } from './interfaces/IRouterDefinition';
  * Decorator for ApiController
  * @param baseUrl the basic url for this controller
  */
-export const controller = (baseUrl: string = ''): ClassDecorator =>
+export const Controller = (baseUrl: string = ''): ClassDecorator =>
 {
     return (target: any) =>
     {
@@ -20,7 +20,7 @@ export const controller = (baseUrl: string = ''): ClassDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const get = (path: string): MethodDecorator =>
+export const Get = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -44,7 +44,7 @@ export const get = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const getMiddleware = (path: string): MethodDecorator =>
+export const GetMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -68,7 +68,7 @@ export const getMiddleware = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const post = (path: string): MethodDecorator =>
+export const Post = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -93,7 +93,7 @@ export const post = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const postMiddleware = (path: string): MethodDecorator =>
+export const PostMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -117,7 +117,7 @@ export const postMiddleware = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const put = (path: string): MethodDecorator =>
+export const Put = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -141,7 +141,7 @@ export const put = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const putMiddleware = (path: string): MethodDecorator =>
+export const PutMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -165,7 +165,7 @@ export const putMiddleware = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const patch = (path: string): MethodDecorator =>
+export const Patch = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -189,7 +189,7 @@ export const patch = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const patchMiddleware = (path: string): MethodDecorator =>
+export const PatchMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -213,7 +213,7 @@ export const patchMiddleware = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const options = (path: string): MethodDecorator =>
+export const Options = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -237,7 +237,7 @@ export const options = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const optionsMiddleware = (path: string): MethodDecorator =>
+export const OptionsMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -261,7 +261,7 @@ export const optionsMiddleware = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const del = (path: string): MethodDecorator =>
+export const Delete = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
@@ -286,7 +286,7 @@ export const del = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const delMiddleware = (path: string): MethodDecorator =>
+export const DeleteMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
     return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
