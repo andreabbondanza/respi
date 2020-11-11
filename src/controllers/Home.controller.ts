@@ -1,19 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 import { StandardResponse } from "standard-response";
 import { ApiController } from "../common/ApiController";
-import { controller, get, getMiddleware } from "../common/Decorators";
+import { Controller, Get, GetMiddleware } from "../common/Decorators";
 
 
-@controller("")
+@Controller("")
 export class HomeController extends ApiController
 {
-    @getMiddleware("")
+    @GetMiddleware("")
     public homeMiddleware(req: Request, res: Response, next: NextFunction){
         console.log("Logging from home middleware! :)");
         next();
     }
 
-    @get("")
+    @Get("")
     public home2(req: Request, res: Response): void
     {
         const response = new StandardResponse();
@@ -22,7 +22,7 @@ export class HomeController extends ApiController
         res.send(response.toJson());
     }
 
-    @get("/:number")
+    @Get("/:number")
     public home(req: Request, res: Response): void
     {
         const response = new StandardResponse();
