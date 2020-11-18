@@ -2,7 +2,7 @@ import { NextFunction } from "express";
 import { LanguageManager } from "language-manager-ts";
 import { IApi } from "./interfaces/IApi";
 import { IApiController } from "./interfaces/IApiController";
-import { IRouteDefinition } from "./interfaces/IRouterDefinition";
+import { IRouteDefinition } from "./interfaces/IDecoratorDefinition";
 import { PoolData } from "./PoolData";
 
 export class ApiController implements IApiController
@@ -35,8 +35,8 @@ export class ApiController implements IApiController
                 {
                     self[methodName](req, res)
                 }
-            if(route.type === "middleware")
-            request = (req: Express.Request, res: Express.Response, next: NextFunction) =>
+            if (route.type === "middleware")
+                request = (req: Express.Request, res: Express.Response, next: NextFunction) =>
                 {
                     self[methodName](req, res, next)
                 }

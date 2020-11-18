@@ -1,14 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import { StandardResponse } from "standard-response";
 import { ApiController } from "../common/ApiController";
-import { Controller, Get, GetMiddleware } from "../common/Decorators";
+import { Controller, Get } from "../common/decorators/Methods";
+import { GetMiddleware } from "../common/decorators/Middlewares";
 
 
 @Controller("")
 export class HomeController extends ApiController
 {
     @GetMiddleware("")
-    public homeMiddleware(req: Request, res: Response, next: NextFunction){
+    public homeMiddleware(req: Request, res: Response, next: NextFunction)
+    {
         console.log("Logging from home middleware! :)");
         next();
     }

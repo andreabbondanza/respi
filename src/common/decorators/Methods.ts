@@ -1,4 +1,4 @@
-import { IRouteDefinition } from './interfaces/IRouterDefinition';
+import { IRouteDefinition } from '../interfaces/IDecoratorDefinition';
 
 /**
  * Decorator for ApiController
@@ -12,6 +12,10 @@ export const Controller = (baseUrl: string = ''): ClassDecorator =>
         if (!Reflect.hasMetadata('routes', target))
         {
             Reflect.defineMetadata('routes', [], target);
+        }
+        if (!Reflect.hasMetadata('ctype', target))
+        {
+            Reflect.defineMetadata('ctype', [], target);
         }
     };
 };
@@ -40,29 +44,7 @@ export const Get = (path: string): MethodDecorator =>
     };
 };
 
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
-export const GetMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'get',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
+
 
 /**
  * Decorator for routing methods
@@ -93,30 +75,6 @@ export const Post = (path: string): MethodDecorator =>
  * Decorator for routing methods
  * @param path the url for the method
  */
-export const PostMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'post',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
-
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
 export const Put = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
@@ -132,30 +90,6 @@ export const Put = (path: string): MethodDecorator =>
             path,
             methodName: propertyKey,
             type: "api"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
-
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
-export const PutMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'put',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
         });
         Reflect.defineMetadata('routes', routes, target.constructor);
     };
@@ -185,29 +119,7 @@ export const Patch = (path: string): MethodDecorator =>
     };
 };
 
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
-export const PatchMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'patch',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
+
 
 /**
  * Decorator for routing methods
@@ -233,29 +145,7 @@ export const Options = (path: string): MethodDecorator =>
     };
 };
 
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
-export const OptionsMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'options',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
+
 
 /**
  * Decorator for routing methods
@@ -282,26 +172,3 @@ export const Delete = (path: string): MethodDecorator =>
 };
 
 
-/**
- * Decorator for routing methods
- * @param path the url for the method
- */
-export const DeleteMiddleware = (path: string): MethodDecorator =>
-{
-    // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
-    {
-        if (!Reflect.hasMetadata('routes', target.constructor))
-        {
-            Reflect.defineMetadata('routes', [], target.constructor);
-        }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
-        routes.push({
-            requestMethod: 'delete',
-            path,
-            methodName: propertyKey,
-            type: "middleware"
-        });
-        Reflect.defineMetadata('routes', routes, target.constructor);
-    };
-};
