@@ -31,8 +31,14 @@ export class Logger
             if (stack.length > 2)
             {
                 const fun: string = stack[1].split(" ")[1];
-                const file: string = stack[1].split(" ")[2].split("/dist/")[1];
-                const output = fun + " : " + file.removeLastCharacter();                
+                console.log(stack[1].split(" ")[2]);
+                let file: string = stack[1].split(" ")[2].split("/dist/")[1];
+                if (!file)
+                {
+                    file = stack[1].split(" ")[2].split("\\dist\\")[1];
+                }
+
+                const output = fun + " : " + file.removeLastCharacter();
                 return output;
             }
         }
