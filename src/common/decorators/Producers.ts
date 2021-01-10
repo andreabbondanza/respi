@@ -7,7 +7,7 @@ import { IProducesDefinition } from "../interfaces/IDecoratorDefinition";
 export const Produces = (cType: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('ctype', target))
         {

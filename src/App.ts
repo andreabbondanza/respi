@@ -1,17 +1,19 @@
+import 'reflect-metadata';
+
 import dewlinq from 'dewlinq';
 import dewstrings from 'dewstrings';
-import { Request, RequestHandler, Response } from "express";
-import { LanguageManager, StorageServer } from "language-manager-ts";
-import "reflect-metadata";
-import { StandardResponse } from "standard-response";
-import { AppEnvironment } from "./AppEnvironment";
-import { Api } from "./common/Api";
-import { IApiApp } from "./common/interfaces/IApiApp";
-import { IConfig } from "./common/interfaces/IConfig";
+import { Request, RequestHandler, Response } from 'express';
+import { LanguageManager, StorageServer } from 'language-manager-ts';
+import process from 'process';
+import { StandardResponse } from 'standard-response';
+
+import { AppEnvironment } from './AppEnvironment';
+import { Api } from './common/Api';
+import { IApiApp } from './common/interfaces/IApiApp';
+import { IConfig } from './common/interfaces/IConfig';
 import { Logger } from './common/Logger';
-import { PoolData } from "./common/PoolData";
-import { middlewares } from "./middlewares/AppMiddlewares";
-import process from "process";
+import { PoolData } from './common/PoolData';
+import { middlewares } from './middlewares/AppMiddlewares';
 
 dewlinq();
 dewstrings();
@@ -29,7 +31,7 @@ export class App implements IApiApp
         this._api = new Api();
     }
     /**
-     * Perform configuration 
+     * Perform configuration
      */
     public configure()
     {
@@ -42,13 +44,13 @@ export class App implements IApiApp
     }
     /**
      * Perform middleware settings
-     * @param middlewares: the middlewares
+     * @param listOfMiddlewares: the middlewares
      */
-    public uses(...middlewares: RequestHandler[])
+    public uses(...listOfMiddlewares: RequestHandler[])
     {
         if (this._api)
         {
-            for (const middleware of middlewares)
+            for (const middleware of listOfMiddlewares)
             {
                 this._api.api.use(middleware);
             }
@@ -73,7 +75,7 @@ export class App implements IApiApp
                         .enableRouting(controller.controllerClass);
                 }
             }
-        } 1
+        }
         // 404, every not found falls here
         this._api?.api.get("*", (req: Request, res: Response) =>
         {
@@ -84,6 +86,7 @@ export class App implements IApiApp
         });
         return this;
     }
+
     /**
      * Start the server
      */
@@ -92,9 +95,9 @@ export class App implements IApiApp
         if (this._config)
         {
             this._api?.listen(this._config.server.port);
-            logger.log("Server is listening on " 
-                        + this._config.server.host 
-                        + ":" 
+            logger.log("Server is listening on "
+                        + this._config.server.host
+                        + ":"
                         + this._config.server.port);
         }
     }
@@ -106,4 +109,3 @@ app.configure()
     .uses(...middlewares())
     .setupControllers()
     .start();
-

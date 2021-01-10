@@ -7,7 +7,7 @@ import { IRouteDefinition } from '../interfaces/IDecoratorDefinition';
 export const PostMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -31,7 +31,7 @@ export const PostMiddleware = (path: string): MethodDecorator =>
 export const PutMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -55,7 +55,7 @@ export const PutMiddleware = (path: string): MethodDecorator =>
 export const PatchMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -79,7 +79,7 @@ export const PatchMiddleware = (path: string): MethodDecorator =>
 export const OptionsMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -103,7 +103,7 @@ export const OptionsMiddleware = (path: string): MethodDecorator =>
 export const DeleteMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -127,7 +127,7 @@ export const DeleteMiddleware = (path: string): MethodDecorator =>
 export const GetMiddleware = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {

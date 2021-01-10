@@ -15,4 +15,3 @@ export function middlewares(): RequestHandler[]
         new StaticFilesMiddleware().get()
     ];
 }
-

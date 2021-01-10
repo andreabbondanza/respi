@@ -27,7 +27,7 @@ export const Controller = (baseUrl: string = ''): ClassDecorator =>
 export const Get = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -53,7 +53,7 @@ export const Get = (path: string): MethodDecorator =>
 export const Post = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -78,7 +78,7 @@ export const Post = (path: string): MethodDecorator =>
 export const Put = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -102,7 +102,7 @@ export const Put = (path: string): MethodDecorator =>
 export const Patch = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -128,7 +128,7 @@ export const Patch = (path: string): MethodDecorator =>
 export const Options = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {
@@ -154,7 +154,7 @@ export const Options = (path: string): MethodDecorator =>
 export const Delete = (path: string): MethodDecorator =>
 {
     // `target` equals our class, `propertyKey` equals our decorated method name
-    return (target: any, propertyKey: string | Symbol, descriptor: PropertyDescriptor): void =>
+    return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void =>
     {
         if (!Reflect.hasMetadata('routes', target.constructor))
         {

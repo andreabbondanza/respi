@@ -15,7 +15,7 @@ export interface IApiController
      */
     [key: string]: any;
     /**
-     * Init a controller 
+     * Init a controller
      * @param api the api object for the controller
      */
     init(api: IApi, pool: PoolData): IApiController;
@@ -26,5 +26,5 @@ export interface IApiController
     /**
      * Enable the routing for the controller
      */
-    enableRouting(myclass: any): void
+    enableRouting(myclass: any): void;
 }

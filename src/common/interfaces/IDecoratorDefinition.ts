@@ -3,7 +3,7 @@ export interface IDecoratorDefinition
   // HTTP Request method (get, post, ...)
   requestMethod: 'get' | 'post' | 'delete' | 'options' | 'put' | 'patch';
   // Method name within our class responsible for this route
-  methodName: string | Symbol;
+  methodName: string | symbol;
   // Callback type
   type: 'middleware' | 'api' | 'produces';
 }
