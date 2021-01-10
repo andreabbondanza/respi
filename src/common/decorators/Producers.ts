@@ -13,7 +13,7 @@ export const Produces = (cType: string): MethodDecorator =>
         {
             Reflect.defineMetadata('ctype', [], target);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IProducesDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IProducesDefinition[];
         routes.push({
             requestMethod: 'post',
             contentType: cType,

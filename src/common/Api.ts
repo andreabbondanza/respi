@@ -27,10 +27,9 @@ export class Api implements IApi
      * Shutdown previous listener and create a new
      * @param port port number
      */
-    public listen(port: Number): void
+    public listen(port: number): void
     {
         this._server?.close();
         this._server = this._app?.listen(port);
     }
 }
-

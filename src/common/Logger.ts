@@ -8,10 +8,25 @@ export class Logger
     {
         return this._env === "development";
     }
+
     public constructor(env: string | undefined)
     {
         if (env)
             this._env = env;
+    }
+
+    /**
+     * Log stuff
+     * @param val log value if showLog is enabled
+     */
+    public log(val: string)
+    {
+        if (this.showLog)
+        {
+            console.log("------------------");
+            console.log(this.getTrace());
+            console.log(val);
+        }
     }
 
     private getTrace(): string | undefined
@@ -26,8 +41,8 @@ export class Logger
         }
         if (stack)
         {
-            stack = stack.split('\n').map(function (line: string) { return line.trim(); });
-            stack = stack.splice(stack[0] == 'Error' ? 2 : 1);
+            stack = stack.split('\n').map((line: string) => line.trim());
+            stack = stack.splice(stack[0] === 'Error' ? 2 : 1);
             if (stack.length > 2)
             {
                 const fun: string = stack[1].split(" ")[1];
@@ -43,18 +58,5 @@ export class Logger
             }
         }
         return undefined;
-    }
-    /**
-     * 
-     * @param val log value if showLog is enabled
-     */
-    public log(val: string)
-    {
-        if (this.showLog)
-        {
-            console.log("------------------");
-            console.log(this.getTrace());
-            console.log(val);
-        }
     }
 }

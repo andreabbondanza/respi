@@ -13,7 +13,7 @@ export const PostMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'post',
             path,
@@ -37,7 +37,7 @@ export const PutMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'put',
             path,
@@ -61,7 +61,7 @@ export const PatchMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'patch',
             path,
@@ -85,7 +85,7 @@ export const OptionsMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'options',
             path,
@@ -109,7 +109,7 @@ export const DeleteMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'delete',
             path,
@@ -133,7 +133,7 @@ export const GetMiddleware = (path: string): MethodDecorator =>
         {
             Reflect.defineMetadata('routes', [], target.constructor);
         }
-        const routes = Reflect.getMetadata('routes', target.constructor) as Array<IRouteDefinition>;
+        const routes = Reflect.getMetadata('routes', target.constructor) as IRouteDefinition[];
         routes.push({
             requestMethod: 'get',
             path,

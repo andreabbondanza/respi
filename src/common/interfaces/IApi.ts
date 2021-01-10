@@ -4,7 +4,4 @@ export interface IApi
 {
     readonly api: Express;
     listen(port: number): void;
-    
 }
-
-

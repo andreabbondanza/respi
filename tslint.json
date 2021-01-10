@@ -11,7 +11,12 @@
         "variable-name":false,
         "no-trailing-whitespace":true,
         "whitespace":false,
-        "no-unused-expression": false
+        "no-unused-expression": false,
+        "object-literal-sort-keys":false,
+        "curly":false,
+        "no-console": false,
+        "no-unnecessary-initializer":false,
+        "semicolon":false
     },
     "rulesDirectory": []
 }
