@@ -40,6 +40,7 @@ export class App implements IApiApp
         this._poolData.push("lang", new LanguageManager(new StorageServer(".."))
             .addLanguages(...AppEnvironment.loadLocals(this._config))
             .setCurrentLanguage(this._config.localization.lang));
+        this._poolData.push("cfg", this._config);
         return this;
     }
     /**
@@ -96,9 +97,9 @@ export class App implements IApiApp
         {
             this._api?.listen(this._config.server.port);
             logger.log("Server is listening on "
-                        + this._config.server.host
-                        + ":"
-                        + this._config.server.port);
+                + this._config.server.host
+                + ":"
+                + this._config.server.port);
         }
     }
 }

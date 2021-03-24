@@ -2,15 +2,18 @@ import { NextFunction } from "express";
 import { LanguageManager } from "language-manager-ts";
 import { IApi } from "./interfaces/IApi";
 import { IApiController } from "./interfaces/IApiController";
+import { IConfig } from "./interfaces/IConfig";
 import { IRouteDefinition } from "./interfaces/IDecoratorDefinition";
 import { PoolData } from "./PoolData";
 export class ApiController implements IApiController
 {
     protected _lang: LanguageManager | undefined = undefined;
     private _api: IApi | undefined = undefined;
+    protected cfg: IConfig | undefined = undefined;
     public init(api: IApi, poolData: PoolData = new PoolData()): IApiController
     {
         this._lang = poolData.get("lang");
+        this.cfg = poolData.get("cfg");
         this._api = api;
         return this;
     }
